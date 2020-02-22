@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>book</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description>用户登录</description>
+    <display-name>UserServlet</display-name>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>exer.web.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/userServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>图书管理</description>
+    <display-name>BookServlet</display-name>
+    <servlet-name>BookServlet</servlet-name>
+    <servlet-class>exer.web.BookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookServlet</servlet-name>
+    <url-pattern>/manager/bookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>图书分页展示</description>
+    <display-name>ClientBookServlet</display-name>
+    <servlet-name>ClientBookServlet</servlet-name>
+    <servlet-class>exer.web.ClientBookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientBookServlet</servlet-name>
+    <url-pattern>/client/bookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <url-pattern>/kaptcha.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>购物车</description>
+    <display-name>CartServlet</display-name>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>exer.web.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/cartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>订单</description>
+    <display-name>OrderServlet</display-name>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>exer.web.OrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/orderServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 关于图书管理filter过滤的配置信息 -->
+  <filter>
+  	<filter-name>managerFilter</filter-name>
+  	<filter-class>exer.filter.managerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>managerFilter</filter-name>
+  	<url-pattern>/pages/manager/*</url-pattern>
+  	<url-pattern>/manager/bookServlet</url-pattern>
+  </filter-mapping>
+  
+  <!--  所有事件触发过滤的filter配置信息 -->
+  <filter>
+  	<filter-name>TransactionFilter</filter-name>
+  	<filter-class>exer.filter.TransactionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>TransactionFilter</filter-name>
+  	<!-- /* 表示拦截请求地址为:http://ip:port/工程名/所有 -->
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 配置500错误页面 -->
+	<error-page>
+	<!-- error-code标签错误类型，也就是错误码 500 -->
+		<error-code>500</error-code>
+		<!-- 你要跳转去的错误页面的路径 -->
+		<location>/pages/error/error500.jsp</location>
+	</error-page>
+	<!-- 配置错误页面 -->
+	<error-page>
+	<!-- error-code标签错误类型，也就是错误码 404 -->
+		<error-code>404</error-code>
+		<!-- 你要跳转去的错误页面的路径 -->
+		<location>/pages/error/error404.jsp</location>
+	</error-page>
+</web-app>

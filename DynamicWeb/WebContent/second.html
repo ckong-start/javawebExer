@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户注册</title>
+<script type="text/javascript" src="./script/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#in1").click(function() {
+			var nameText = $("#username").val();
+			var namePatt = /^\w{5,12}$/;
+			if (nameText.length == "") {
+				$("#sp1").text("用户名不能为空");
+				return false;
+			} else if (!namePatt.test(nameText)) {
+				$("#sp1").text("用户名不合法");
+				return false;
+			}
+			var pswText = $("#psw").val();
+			var pswPatt = /^\w{5,12}$/;
+			if (pswText.length == "") {
+				$("#sp1").text("密码不能为空");
+				return false;
+			} else if (!pswPatt.test(pswText)) {
+				$("#sp1").text("密码不合法");
+				return false;
+			}
+			var repswText = $("#repsw").val();
+			
+			if (repswText.length == "") {
+				$("#sp1").text("确认密码不能为空");
+				return false;
+			} else if (repswText!=pswText) {
+				$("#sp1").text("密码不一致");
+				return false;
+			}
+			$("#sp1").text("");
+		});
+	});
+</script>
+</head>
+<body>
+	
+		<div>
+			<h3>用户注册</h3>
+			<form action="first.html">
+				<table>
+					<tr>
+						<td>用户名：</td>
+						<td><input type="text" placeholder="请输入用户名" id="username" /><span
+							id="sp1" style="color: red;"></span></td>
+					</tr>
+					<tr>
+						<td>密码：</td>
+						<td><input type="password" placeholder="请输入密码" id="psw" /></td>
+					</tr>
+					<tr>
+						<td>确认密码：</td>
+						<td><input type="password" placeholder="请输入确认密码" id="repsw" />
+						</td>
+					</tr>
+					<tr>
+						<td>性别：</td>
+						<td><input name="sex" type="radio" checked="checked" />男 <input
+							name="sex" type="radio" />女</td>
+					</tr>
+					<tr>
+						<td>兴趣爱好：</td>
+						<td><input type="checkbox" checked="checked" />Java <input
+							type="checkbox" checked="checked" />C++ <input type="checkbox" />JavaScript
+						</td>
+					</tr>
+					<tr>
+						<td>国籍：</td>
+						<td><select>
+								<option>--请选择国籍--</option>
+								<option selected="selected">中国</option>
+								<option>美国</option>
+								<option>日本</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td>自我评价：</td>
+						<td><textarea rows="10" cols="20">我是默认值</textarea></td>
+					</tr>
+					<tr>
+						<td><input type="reset" /></td>
+						<td align="center"><input type="submit" id="in1" /></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	
+</body>
+</html>
