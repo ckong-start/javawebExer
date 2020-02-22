@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<style>
+			button{
+				color : red;
+				font-size : 30px;
+			}
+		</style>
+		<script type="text/javascript">
+			function onClickFun(){
+				alert("静态注册的单击事件");
+			}
+	
+			function onBlurFun(){
+				alert("静态失去焦点事件");
+			}
+			
+			function onChangeFun(){
+				alert("静态注册的onchange事件");
+			}
+			
+			function onsubmitFun(){
+				alert("静态注册onsubmit事件,验证所有表单项，发现不合法，阻止提交");
+				// return false阻止提交
+				return false;
+			}
+
+			
+			window.onload = function(){
+				var btnObj = document.getElementById("btn01");
+				btnObj.onclick = function(){
+					alert("动态注册的单击事件");
+				}
+				var passwordObj = document.getElementById("pass");
+				passwordObj.onblur = function(){
+					alert("动态注册的onblur事件");
+				}
+				var selObj = document.getElementById("sel01");
+				selObj.onchange = function(){
+					alert("动态注册的改变事件");
+				}
+				var formObj = document.getElementById("form01");
+				formObj.onsubmit = function(){
+					alert("动态注册的onsubmit事件");
+					return false;
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<button onclick = "onClickFun();">click1</button>
+		<button id = "btn01">click2</button><br/>
+		<table>
+			<tr>
+				<td>用户名：</td>
+				<td><input type = "text" onblur = "onBlurFun();"/></td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td><input type = "password" id = "pass"/></td>
+			</tr>
+			<tr>
+				<td>请选择你心中的女神：</td>
+				<td>
+					<select onchange = "onChangeFun();">
+						<option>--请选择女神--</option>
+						<option>安妮</option>
+						<option>迪丽热巴</option>
+						<option>小沈阳</option>
+					</select><br/>
+				</td>
+			</tr>
+			<tr>
+				<td>请选择你心中的男神：</td>
+				<td>
+					<select id = "sel01">
+						<option>--请选择男神--</option>
+						<option>沙老师</option>
+						<option>国歌</option>
+						<option>华仔</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<form action="http://localhost:8080" onsubmit="return onsubmitFun();">
+			<input type = "submit" value = "静态注册onsubmit"/>
+		</form>
+		<form id = "form01" action="http://localhost:8080">
+			<input type = "submit" value = "动态注册onsubmit"/>
+		</form>
+	</body>
+</html>
