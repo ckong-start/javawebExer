@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>getElementsByTagName方法</title>
+		<script>
+			//静态注册
+			/* function checkAll(){
+				var inputs = document.getElementsByTagName("input");
+				for (var i = 0; i < inputs.length; i++) {
+					inputs[i].checked = true;
+				}
+			}
+			function checkNo(){
+				var inputs = document.getElementsByTagName("input");
+				for (var i = 0; i < inputs.length; i++) {
+					inputs[i].checked = false;
+				}
+			}
+			function checkReverse(){
+				var inputs = document.getElementsByTagName("input");
+				for (var i = 0; i < inputs.length; i++) {
+					inputs[i].checked = !inputs[i].checked;
+				}
+			} */
+			//动态注册
+			window.onload = function(){
+				var btns = document.getElementById("btn1");
+				btns.onclick = function(){
+					var inputs = document.getElementsByTagName("input");
+					for (var i = 0; i < inputs.length; i++) {
+						inputs[i].checked = true;					
+					}
+				}
+				var btns = document.getElementById("btn2");
+				btns.onclick = function(){
+					var inputs = document.getElementsByTagName("input");
+					for (var i = 0; i < inputs.length; i++) {
+						inputs[i].checked = false;					
+					}
+				}
+				var btns = document.getElementById("btn3");
+				btns.onclick = function(){
+					var inputs = document.getElementsByTagName("input");
+					for (var i = 0; i < inputs.length; i++) {
+						inputs[i].checked = !inputs[i].checked;					
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+	<h1>createElement方法</h1>
+		<table>
+			<tr>
+				<td>兴趣爱好：</td>
+				<td><input type="checkbox" value="java" checked="checked"/>Java
+					<input type="checkbox" value="cpp"/>C++
+					<input type="checkbox" value="js"/>JavaScript
+					<input type="checkbox" value="lua"/>LUA
+				</td>
+			</tr>
+		</table>
+		<button id = "btn1" onclick = "checkAll();">全选</button>
+		<button id = "btn2" onclick = "checkNo();">全不选</button>
+		<button id = "btn3" onclick = "checkReverse();">反选</button>
+	</body>
+</html>
